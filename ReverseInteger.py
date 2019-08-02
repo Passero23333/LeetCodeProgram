@@ -1,35 +1,14 @@
 class Solution:
-    def reverse(self, x):
-        """
-        :type x: int
-        :rtype: int
-        """
+    def reverse(self, x: int) -> int:
+        sign = 1 if x > 0 else -1
         if x == 0:
             return 0
-
-        num = []
-        remain = abs(x)
-        if x < 0:
-            flag = -1
         else:
-            flag = 1
-
-        while (True):
-            digit = remain % 10
-            remain = remain // 10
-            num.append(digit)
-            if remain == 0:
-                break
-
-        res = 0
-        for i in num:
-            res *= 10
-            res += i
-
-        if res > 0x7FFFFFFF:
-            return 0
-        else:
-            return res * flag
+            new_x = sign * int(str(abs(x)).strip('0')[::-1])
+            if new_x  < pow(-2,31) or new_x > pow(2,31) - 1:
+                return 0
+            else:
+                return new_x
 
 # test code
 x = Solution()
